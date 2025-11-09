@@ -319,8 +319,12 @@ void update() {
     if (gameOver) { glutPostRedisplay(); return; }
 
     const float maxSpeed = 0.02f;
+    const float minSpeed = -0.02f;
     if (specialKeyStates[GLUT_KEY_UP] || keyStates['w'] || keyStates['W']) {
         playerSpeed += playerAcc; if (playerSpeed > maxSpeed) playerSpeed = maxSpeed;
+    }
+    else if (specialKeyStates[GLUT_KEY_DOWN] || keyStates['s'] || keyStates['S']) {
+        playerSpeed -= playerAcc; if (playerSpeed < minSpeed) playerSpeed = minSpeed;
     }
     else {
         playerSpeed = 0.0f;
